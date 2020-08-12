@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+ import React, { Component } from 'react'
 import axios from 'axios'
 import SearchBox from './SearchBox'
 import SearchBar from '../SearchBar';
@@ -25,6 +25,7 @@ class Home extends Component {
   KEY ="?client_id=IT1eWqx8QiSB2KBjviApk8Q6Z18MAaPY0eUCme-i6Ho"
   SIZE ="&w=100&h=100"
   PERPAGE = `&per_page=9`
+
 // i have call unsplash api inside fetchInitialImages using Axios third party library 
   fetchInitialImages = () => {
     this.setState({ searchedQuery: 'List of Images'})
@@ -47,6 +48,7 @@ class Home extends Component {
           src: prevState.gallery[index].urls.regular,
           username: prevState.gallery[index].user.username,
           page: prevState.gallery[index].user.links.html,
+          download:prevState.gallery[index].urls.download
         }
       }
     })
@@ -80,6 +82,8 @@ class Home extends Component {
     })
   }
 
+
+
   componentDidMount() {
     this.fetchInitialImages()
   }
@@ -95,6 +99,7 @@ class Home extends Component {
       currentQuery: e.target.value
     })
   }
+
   // searchbox method
   handleSubmit = (e) => {
     e.preventDefault()
